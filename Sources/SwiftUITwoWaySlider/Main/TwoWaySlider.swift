@@ -4,7 +4,7 @@
 import SwiftUI
 
 @available(iOS 15.0, *)
-struct TwoWaySlider: View {
+public struct TwoWaySlider: View {
     
     @Binding var leftVal: Double
     @Binding var rightVal: Double
@@ -32,13 +32,13 @@ struct TwoWaySlider: View {
         return val / range.upperBound
     }
     
-    init(leftVal: Binding<Double>, rightVal: Binding<Double>, range: ClosedRange<Double>) {
+    public init(leftVal: Binding<Double>, rightVal: Binding<Double>, range: ClosedRange<Double>) {
         self._leftVal = leftVal
         self._rightVal = rightVal
         self.range = range
     }
 
-    var body: some View {
+    public var body: some View {
         ZStack {
             GeometryReader { geometry in
                 ZStack(alignment: .leading) {

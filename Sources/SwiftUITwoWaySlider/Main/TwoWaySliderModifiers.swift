@@ -8,7 +8,7 @@
 import SwiftUI
 
 @available(iOS 15.0, *)
-extension TwoWaySlider {
+public extension TwoWaySlider {
     func frame(height: CGFloat) -> TwoWaySlider {
         var view = self
         view.height = height
