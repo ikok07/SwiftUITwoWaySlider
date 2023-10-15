@@ -31,6 +31,12 @@ struct TwoWaySlider: View {
     func calculateMinValPercentage(for val: Double) -> Double {
         return val / range.upperBound
     }
+    
+    init(leftVal: Binding<Double>, rightVal: Binding<Double>, range: ClosedRange<Double>) {
+        self._leftVal = leftVal
+        self._rightVal = rightVal
+        self.range = range
+    }
 
     var body: some View {
         ZStack {
