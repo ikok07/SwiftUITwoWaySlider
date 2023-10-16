@@ -9,9 +9,10 @@ import SwiftUI
 
 @available(iOS 15.0, *)
 public extension TwoWaySlider {
-    func frame(height: CGFloat) -> TwoWaySlider {
+    func frame(height: CGFloat, containerHeight: CGFloat) -> TwoWaySlider {
         var view = self
         view.height = height
+        view.containerHeight = containerHeight
         return view
     }
     

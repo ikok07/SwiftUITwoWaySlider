@@ -25,6 +25,7 @@ public struct TwoWaySlider: View {
     
     var cornerRadius: CGFloat = 2
     var height: CGFloat = 4
+    var containerHeight: CGFloat = 50
     
     var selectorWidth: CGFloat = 25
     
@@ -102,6 +103,7 @@ public struct TwoWaySlider: View {
                 }
             }
         }
+        .frame(height: containerHeight)
     }
 }
 
