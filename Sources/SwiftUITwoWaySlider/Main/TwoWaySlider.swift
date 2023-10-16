@@ -74,7 +74,6 @@ public struct TwoWaySlider: View {
                                     let newPosition = CGPoint(x: initialPosition.x + gesture.translation.width, y: geometry.size.height / 2)
                                     leftSelPosition = CGPoint(x: max(0, min(geometry.size.width * rightValPercentage - selectorWidth, newPosition.x)), y: newPosition.y)
                                     leftValPercentage = leftSelPosition.x / geometry.size.width
-                                    print(leftValPercentage)
                                     
                                     initialLeftSelDragOffset = CGSize(width: gesture.translation.width, height: 0)
                                 }
