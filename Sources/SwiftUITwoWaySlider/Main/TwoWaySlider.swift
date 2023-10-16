@@ -31,6 +31,8 @@ public struct TwoWaySlider: View {
     var containerHeight: CGFloat = 50
     
     var selectorWidth: CGFloat = 25
+    var selectorBorderColor: Color = .accentColor
+    var selectorBorderWidth: CGFloat = 4
     
     var leftLabel: String = ""
     var rightLabel: String = ""
@@ -61,7 +63,7 @@ public struct TwoWaySlider: View {
                         .position(x: (geometry.size.width * leftValPercentage) + (geometry.size.width * rightValPercentage - geometry.size.width * leftValPercentage) / 2, y: geometry.size.height / 2)
                     
                     SliderSelector(color: .white, width: selectorWidth, labelBg: self.labelBg, labelTextColor: self.labelTextColor, label: self.leftLabel, active: leftLabelActive)
-                        .border(.accentColor, width: 4)
+                        .border(selectorBorderColor, width: selectorBorderWidth)
                         .position(leftSelPosition)
                         .gesture (
                             DragGesture()
@@ -84,7 +86,7 @@ public struct TwoWaySlider: View {
                         )
                     
                     SliderSelector(color: .white, width: selectorWidth, labelBg: self.labelBg, labelTextColor: self.labelTextColor, label: self.rightLabel, active: rightLabelActive)
-                        .border(.accentColor, width: 4)
+                        .border(selectorBorderColor, width: selectorBorderWidth)
                         .position(rightSelPosition)
                         .gesture (
                             DragGesture()
