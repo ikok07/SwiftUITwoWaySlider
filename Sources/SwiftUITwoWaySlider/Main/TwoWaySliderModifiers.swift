@@ -34,6 +34,12 @@ public extension TwoWaySlider {
         return view
     }
     
+    func selectorWidth(_ width: CGFloat) -> TwoWaySlider {
+        var view = self
+        view.selectorWidth = width
+        return view
+    }
+    
     func selectorBorder(width: CGFloat = 5, color: Color = .accentColor) -> TwoWaySlider {
         var view = self
         view.selectorBorderWidth = width
