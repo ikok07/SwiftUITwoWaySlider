@@ -18,6 +18,7 @@ struct SliderTestView: View {
             Text("Min: \(leftVal)")
             Text("Max: \(rightVal)")
             TwoWaySlider(leftVal: $leftVal, rightVal: $rightVal, range: 0...100)
+                .withLabels(leftLabel: "\(Int(leftVal))", rightLabel: "\(Int(rightVal))")
         }
         .padding()
     }

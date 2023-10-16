@@ -33,4 +33,17 @@ public extension TwoWaySlider {
         view.cornerRadius = value
         return view
     }
+    
+    func withLabels(leftLabel: String, rightLabel: String, bgColor: Color? = nil, textColor: Color? = nil) -> TwoWaySlider {
+        var view = self
+        view.leftLabel = leftLabel
+        view.rightLabel = rightLabel
+        if bgColor != nil {
+            view.labelBg = bgColor!
+        }
+        if textColor != nil {
+            view.labelTextColor = textColor!
+        }
+        return view
+    }
 }

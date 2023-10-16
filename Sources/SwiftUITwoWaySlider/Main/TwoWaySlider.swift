@@ -17,6 +17,9 @@ public struct TwoWaySlider: View {
     @State private var initialRightSelDragOffset: CGSize = .zero
     @State private var rightValPercentage: Double = 0.0
     
+    @State private var leftLabelActive: Bool = false
+    @State private var rightLabelActive: Bool = false
+    
     
     let range: ClosedRange<Double>
     
@@ -28,6 +31,11 @@ public struct TwoWaySlider: View {
     var containerHeight: CGFloat = 50
     
     var selectorWidth: CGFloat = 25
+    
+    var leftLabel: String = ""
+    var rightLabel: String = ""
+    var labelBg: Color = .accentColor
+    var labelTextColor: Color = .white
     
     func calculateMinValPercentage(for val: Double) -> Double {
         return val / range.upperBound
@@ -52,12 +60,14 @@ public struct TwoWaySlider: View {
                         .frame(width: (geometry.size.width * rightValPercentage - geometry.size.width * leftValPercentage) + selectorWidth, height: height)
                         .position(x: (geometry.size.width * leftValPercentage) + (geometry.size.width * rightValPercentage - geometry.size.width * leftValPercentage) / 2, y: geometry.size.height / 2)
                     
-                    SliderSelector(color: .white, width: selectorWidth)
+                    SliderSelector(color: .white, width: selectorWidth, labelBg: self.labelBg, labelTextColor: self.labelTextColor, label: self.leftLabel, active: leftLabelActive)
                         .border(.accentColor, width: 4)
                         .position(leftSelPosition)
                         .gesture (
                             DragGesture()
                                 .onChanged { gesture in
+                                    leftLabelActive = true
+                                    
                                     let initialPosition = CGPoint(x: leftSelPosition.x - initialLeftSelDragOffset.width, y: geometry.size.height / 2)
                                     let newPosition = CGPoint(x: initialPosition.x + gesture.translation.width, y: geometry.size.height / 2)
                                     leftSelPosition = CGPoint(x: max(0, min(geometry.size.width * rightValPercentage - selectorWidth, newPosition.x)), y: newPosition.y)
@@ -67,16 +77,20 @@ public struct TwoWaySlider: View {
                                     initialLeftSelDragOffset = CGSize(width: gesture.translation.width, height: 0)
                                 }
                                 .onEnded({ gesture in
+                                    leftLabelActive = false
+                                    
                                     initialLeftSelDragOffset = .zero
                                 })
                         )
                     
-                    SliderSelector(color: .white, width: selectorWidth)
+                    SliderSelector(color: .white, width: selectorWidth, labelBg: self.labelBg, labelTextColor: self.labelTextColor, label: self.rightLabel, active: rightLabelActive)
                         .border(.accentColor, width: 4)
                         .position(rightSelPosition)
                         .gesture (
                             DragGesture()
                                 .onChanged { gesture in
+                                    rightLabelActive = true
+                                    
                                     let initialPosition = CGPoint(x: rightSelPosition.x - initialRightSelDragOffset.width, y: geometry.size.height / 2)
                                     let newPosition = CGPoint(x: initialPosition.x + gesture.translation.width, y: geometry.size.height / 2)
                                     rightSelPosition = CGPoint(x: min(max(geometry.size.width * leftValPercentage + selectorWidth, newPosition.x), geometry.size.width), y: newPosition.y)
@@ -85,6 +99,8 @@ public struct TwoWaySlider: View {
                                     initialRightSelDragOffset = CGSize(width: gesture.translation.width, height: 0)
                                 }
                                 .onEnded({ gesture in
+                                    rightLabelActive = false
+                                    
                                     initialRightSelDragOffset = .zero
                                 })
                         )
